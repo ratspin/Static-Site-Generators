@@ -5,6 +5,7 @@
   "version": "1.0.1",
   "author": "Richard Raduly <richard@raduly.fr>",
   "dependencies": {
+    "@directus/gatsby-source-directus": "^9.14.1",
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.1.3",
     "gatsby": "^4.4.0",

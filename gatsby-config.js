@@ -36,6 +36,19 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+        {
+			resolve: '@directus/gatsby-source-directus',
+			options: {
+				url: `https://myai486h.directus.app/`, // Fill with your Directus instance address
+				auth: {
+					token: 's3zd0Qb6RBlxTJ_-RogfbJ0GfcFOYmM0', // You can use a static token from an user
+
+					// Or you can use the credentials of an user
+					//email: "6210110013@psu.ac.th",
+					//password: "12345",
+				},
+			},
+		},
     `gatsby-plugin-gatsby-cloud`,
   ],
 }
