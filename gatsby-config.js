@@ -41,7 +41,7 @@ module.exports = {
 			options: {
 				url: `https://myai486h.directus.app/`, // Fill with your Directus instance address
 				auth: {
-					token: 's3zd0Qb6RBlxTJ_-RogfbJ0GfcFOYmM0', // You can use a static token from an user
+					token: 'KJxnf2UH15QdI8m7hVxRWI3zr3V9cM98', // You can use a static token from an user
 
 					// Or you can use the credentials of an user
 					//email: "6210110013@psu.ac.th",
