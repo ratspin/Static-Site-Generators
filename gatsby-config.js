@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Boostrap 5 Sass Starter`,
+    title: `Home`,
     description: `A simple bootstrap 5 and Sass starter for Gatsby. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@r-ichard`,
   },
