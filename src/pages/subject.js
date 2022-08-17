@@ -1,33 +1,10 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
-import { Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
-import Seo from "../components/seo"
-import { tableCellClasses } from '@mui/material/TableCell';
-import { styled } from '@mui/material/styles';
+import { Box,Container,Typography,Button,ButtonGroup,CssBaseline,Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#909497',
-    color: theme.palette.common.white,
-    fontSize: 16,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-
-export default function StudentPage (){
+export default function Subject (){
   const data = useStaticQuery(graphql`
   query {
       directus {
@@ -43,39 +20,46 @@ export default function StudentPage (){
   `)
   return (
     <Layout>
-      <Seo title="Member" />
-      <div className="container  my-5">
-      <div className="container">
-      <h1 align="center">subject</h1>
-      <div className="table">
-        <TableContainer componebt={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-                <TableRow>
-                  <StyledTableCell align="center">subject id</StyledTableCell>
-                  <StyledTableCell align="center">subject name</StyledTableCell>
-                  <StyledTableCell align="center">day</StyledTableCell>
-                  <StyledTableCell align="center">time</StyledTableCell>
-                  <StyledTableCell align="center">section</StyledTableCell>
-                </TableRow>
-            </TableHead>
+      <CssBaseline />
+      <Container maxWidth="lg" sx={{ p: 2 }}>
+        <Paper sx={{ p: 2 }}>
+          <Box sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}>
+            <Box sx={{ flexGrow: 1 }}> <Typography variant="h6" gutterBottom component="div"> Subject </Typography></Box>
+          </Box>
+        <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+                <TableCell align="center">Subject ID</TableCell>
+                <TableCell align="left">Subject Name</TableCell>
+                <TableCell align="center">Day</TableCell>
+                <TableCell align="center">Time</TableCell>
+                <TableCell align="center">Section</TableCell>
+                <TableCell align="center">Action</TableCell>
+            </TableRow>
+          </TableHead>
 
-            <TableBody>
-              { data.directus.subject.map((subject) => (
-                <StyledTableRow data={subject} key={subject.sj_id}>
-                  <StyledTableCell align="center"> { subject.sj_id } </StyledTableCell>
-                  <StyledTableCell align="center"> { subject.sj_name } </StyledTableCell>
-                  <StyledTableCell align="center"> { subject.day } </StyledTableCell>
-                  <StyledTableCell align="center"> { subject.time } </StyledTableCell>
-                  <StyledTableCell align="center"> { subject.section } </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <TableBody>
+            {data.directus.subject.map((subject) => (
+            <TableRow
+              key={subject.sj_id} data={subject}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+                <TableCell align="center">{subject.sj_id}</TableCell>
+                <TableCell align="left">{subject.sj_name}</TableCell>
+                <TableCell align="center">{subject.day}</TableCell>
+                <TableCell align="center">{subject.time}</TableCell>
+                <TableCell align="center">{subject.section}</TableCell>
+                <TableCell align="center"> 
+                  <ButtonGroup variant="outlined" aria-label="outlined button group"> <Button  startIcon={<EditIcon />} >Edit</Button></ButtonGroup> 
+                </TableCell> 
+            </TableRow>
+          ))}
+          </TableBody>
+        </Table>
         </TableContainer>
-      </div>
-      </div>
-      </div>
+      </Paper>
+      </Container>
     </Layout>
   )
 }
