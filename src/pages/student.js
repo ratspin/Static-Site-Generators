@@ -2,7 +2,7 @@ import  React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import {SeeMoreText,IngredientsText,RecipeName,RecipeContainer,Container,RecipeListContainer} from '../styled_components/styled'
+import {SeeMoreText,Text,Name,Container,Container0,ListContainer} from '../styled_components/styled'
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -40,11 +40,11 @@ export default function StudentPage (){
   return (
     <Layout>
     <Container>
-      <RecipeListContainer>
+      <ListContainer>
             {data.directus.student.map(student => (
               <Profile data={student} key={student.std_id}></Profile>
             ))}
-      </RecipeListContainer>
+      </ListContainer>
     </Container>
     </Layout>
   )
@@ -56,10 +56,11 @@ const Profile = ({ data }) => {
   const register = data.register
 
   return (
-      <RecipeContainer>
+      <Container0>
         <Dialog onClose={() => console.log("adsadad")} aria-labelledby="simple-dialog-title" open={!!show}>
           <DialogTitle>Subject</DialogTitle>
           <DialogContent>
+          <Name>{data.std_name}  {data.std_id}</Name>
             <table>
               <thead text-align = "center">
                 <th>Subject ID</th>
@@ -86,9 +87,9 @@ const Profile = ({ data }) => {
           </DialogActions>
         </Dialog>
           <GatsbyImage image={img} />
-          <RecipeName>{data.std_name}</RecipeName>
-          <RecipeName>{data.std_id}</RecipeName>
-          <IngredientsText onClick={() => setShow(!show)}>Subject</IngredientsText>  
-      </RecipeContainer>
+          <Name>{data.std_name}</Name>
+          <Name>{data.std_id}</Name>
+          <Text onClick={() => setShow(!show)}>Subject</Text>  
+      </Container0>
   )
 }
