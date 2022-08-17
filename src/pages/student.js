@@ -2,7 +2,7 @@ import  React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import {SeeMoreText,Text,Name,Container,Container0,ListContainer} from '../styled_components/styled'
+import {SeeMoreText,Text,Name,Containers,Container0,ListContainer} from '../styled_components/styled'
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -39,18 +39,18 @@ export default function StudentPage (){
 
   return (
     <Layout>
-    <Container>
+    <Containers>
       <ListContainer>
             {data.directus.student.map(student => (
-              <Profile data={student} key={student.std_id}></Profile>
+              <Student data={student} key={student.std_id}></Student>
             ))}
       </ListContainer>
-    </Container>
+    </Containers>
     </Layout>
   )
 }
 
-const Profile = ({ data }) => {
+const Student = ({ data }) => {
   const img = getImage(data.std_img.imageFile)
   const [show, setShow] = useState("");
   const register = data.register
@@ -59,19 +59,22 @@ const Profile = ({ data }) => {
       <Container0>
         <Dialog onClose={() => console.log("adsadad")} aria-labelledby="simple-dialog-title" open={!!show}>
           <DialogTitle>Subject</DialogTitle>
-          <DialogContent>
+          <DialogContent >
           <Name>{data.std_name}  {data.std_id}</Name>
-            <table>
-              <thead text-align = "center">
+            <hr />
+            <table class="table">
+              <thead align="center">
+              <tr>
                 <th>Subject ID</th>
-                <th>Subject Name</th>
+                <th >Subject Name</th>
                 <th>Section</th>
                 <th>Day</th>
                 <th>Time</th>
+              </tr>
               </thead>
               <tbody>
                 {register.map(r => (
-                  <tr >
+                  <tr align="center">
                     <td>{r.subject_id.sj_id}</td>
                     <td>{r.subject_id.sj_name}</td>
                     <td>{r.subject_id.section}</td>
@@ -86,6 +89,7 @@ const Profile = ({ data }) => {
             <SeeMoreText onClick={() => setShow("")}>Close</SeeMoreText>
           </DialogActions>
         </Dialog>
+
           <GatsbyImage image={img} />
           <Name>{data.std_name}</Name>
           <Name>{data.std_id}</Name>

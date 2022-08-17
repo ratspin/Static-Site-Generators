@@ -1,10 +1,16 @@
-import * as React from "react"
+import  React, { useState } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 import { Box,Container,Typography,Button,ButtonGroup,CssBaseline,Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+// import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import {SeeMoreText} from '../styled_components/styled'
 
-export default function Subject (){
+
+export default function SubjectPage (){
   const data = useStaticQuery(graphql`
   query {
       directus {
@@ -14,6 +20,12 @@ export default function Subject (){
           day
           time 
           section
+          register{
+          student_id{
+            std_id
+            std_name
+            }
+          }
         }
       }
     }
@@ -41,18 +53,13 @@ export default function Subject (){
 
           <TableBody>
             {data.directus.subject.map((subject) => (
-            <TableRow
-              key={subject.sj_id} data={subject}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
+            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}  data={subject} key={subject.sj_id}>
                 <TableCell align="center">{subject.sj_id}</TableCell>
                 <TableCell align="left">{subject.sj_name}</TableCell>
                 <TableCell align="center">{subject.day}</TableCell>
                 <TableCell align="center">{subject.time}</TableCell>
                 <TableCell align="center">{subject.section}</TableCell>
-                <TableCell align="center"> 
-                  <ButtonGroup variant="outlined" aria-label="outlined button group"> <Button  startIcon={<EditIcon />} >Edit</Button></ButtonGroup> 
-                </TableCell> 
+                <TableCell align="center">   <Subject data={subject}></Subject> </TableCell> 
             </TableRow>
           ))}
           </TableBody>
@@ -64,3 +71,49 @@ export default function Subject (){
   )
 }
 
+const Subject = ({data}) => {
+  const [show, setShow] = useState("");
+  const register = data.register
+
+  return (
+    <div>
+        <Dialog onClose={() => console.log("adsadad")} aria-labelledby="simple-dialog-title" open={!!show}>
+          {/* <DialogTitle>Student</DialogTitle> */}
+          <DialogContent >
+          {/* <Name>{data.sj_name} </Name> */}
+            <hr />
+            <table class="table" >
+              <thead align="center">
+              <tr>
+                <th scope="col" >Student ID</th>
+                <th scope="col" >Student Name</th>
+              </tr>
+              </thead>
+              <tbody>
+                {register.map(r => (
+                  <tr align="center">
+                    <td>{r.student_id.std_id}</td>
+                    <td>{r.student_id.std_name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </DialogContent>
+          <DialogActions>
+            <SeeMoreText onClick={() => setShow("")}>Close</SeeMoreText>
+          </DialogActions>
+        </Dialog>
+
+
+                  <ButtonGroup  
+                    onClick={() => setShow(!show)}
+                    variant="outlined" 
+                    aria-label="outlined button group"> 
+                    <Button  startIcon={<EditIcon />} >Edit</Button>
+                  </ButtonGroup> 
+
+
+
+    </div>
+  )
+}

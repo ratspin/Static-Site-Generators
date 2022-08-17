@@ -39,7 +39,7 @@ export const Text = styled(SeeMoreText)`
   color: green;
   border: solid 1px green;
 `;
-export const Container = styled.div`
+export const Containers = styled.div`
   display: flex;
   flex-direction: column;
 `;
