@@ -55,8 +55,9 @@ const Student = ({ data }) => {
   const [show, setShow] = useState("");
   const register = data.register
 
+
   return (
-      <Container0>
+      <Container0> 
         <Dialog onClose={() => console.log("adsadad")} aria-labelledby="simple-dialog-title" open={!!show}>
           <DialogTitle>Subject</DialogTitle>
           <DialogContent >
@@ -93,7 +94,8 @@ const Student = ({ data }) => {
           <GatsbyImage image={img} />
           <Name>{data.std_name}</Name>
           <Name>{data.std_id}</Name>
-          <Text onClick={() => setShow(!show)}>Subject</Text>  
+          <Text onClick={() => setShow(!show)}>Subject</Text> 
+          
       </Container0>
   )
 }

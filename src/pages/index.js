@@ -10,14 +10,14 @@ const IndexPage = () => (
       <div className="row py-lg-5">
         <div className="col-lg-6 col-md-8 mx-auto">
           <StaticImage
-            src="../images/gatsby-astronaut.png"
+            src="../images/1234.png"
             width={300}
             quality={95}
             formats={["AUTO", "WEBP"]}
             alt="A Gatsby astronaut"
             className="img-fluid"
           />
-          <h1 className="fw-light">Hello World</h1>
+          <h1 className="fw-light">ยินดีต้อนรับ</h1>
 
 
         </div>
