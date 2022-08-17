@@ -49,6 +49,10 @@ module.exports = {
 				},
 			},
 		},
+    {
+    siteUrl:'https://ratspin.github.io',
+    pathPrefix:'Static-Site-Generators',
+    },
     `gatsby-plugin-gatsby-cloud`,
   ],
 }
