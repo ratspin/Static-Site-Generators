@@ -2,10 +2,9 @@ import  React, { useState } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 import { Box,Container,Typography,Button,ButtonGroup,CssBaseline,Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import NotListedLocationOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-// import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import {SeeMoreText} from '../styled_components/styled'
 
@@ -47,7 +46,7 @@ export default function SubjectPage (){
                 <TableCell align="center">Day</TableCell>
                 <TableCell align="center">Time</TableCell>
                 <TableCell align="center">Section</TableCell>
-                <TableCell align="center">Action</TableCell>
+                <TableCell align="center">Student List</TableCell>
             </TableRow>
           </TableHead>
 
@@ -109,7 +108,7 @@ const Subject = ({data}) => {
                     onClick={() => setShow(!show)}
                     variant="outlined" 
                     aria-label="outlined button group"> 
-                    <Button  startIcon={<EditIcon />} >Edit</Button>
+                    <Button  startIcon={<NotListedLocationOutlinedIcon />} >Student</Button>
                   </ButtonGroup> 
 
 
