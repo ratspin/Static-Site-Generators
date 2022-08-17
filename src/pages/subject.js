@@ -1,29 +1,82 @@
 import * as React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
+import { useStaticQuery, graphql } from "gatsby"
+import { Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
 import Seo from "../components/seo"
+import { tableCellClasses } from '@mui/material/TableCell';
+import { styled } from '@mui/material/styles';
 
-export const Head = () => <Seo title="Home" />
-const AboutPage = () => (
-  <Layout>
-    <Seo title="About Gatsby Bootsrap 5 starter" />
-    <div className="container  my-5">
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#909497',
+    color: theme.palette.common.white,
+    fontSize: 16,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 16,
+  },
+}));
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+
+export default function StudentPage (){
+  const data = useStaticQuery(graphql`
+  query {
+      directus {
+        subject {
+          sj_id 
+          sj_name
+          day
+          time 
+          section
+        }
+      }
+    }
+  `)
+  return (
+    <Layout>
+      <Seo title="Member" />
+      <div className="container  my-5">
       <div className="container">
-        <h1 >What you need to know</h1>
-        <p>
-          <ul>
-            <li>Bootstrap 5 support with SASS</li>
-            <li>Customize theme via <span className="font-monospace ">layout.scss</span></li>
-            <li>If any issue report to <a href="https://github.com/r-ichard/gatsby-starter-bootstrap-5" target="_blank" rel="noopener noreferrer">Github Repo</a></li>
-          </ul>
-        </p>
-        <p>Created by <a href="https://github.com/r-ichard" target="_blank" rel="noopener noreferrer">Richard Raduly</a></p>
-      </div>
-      <Link to="/">Go back to the homepage</Link>
-    </div>
-  </Layout>
-)
+      <h1 align="center">subject</h1>
+      <div className="table">
+        <TableContainer componebt={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">subject id</StyledTableCell>
+                  <StyledTableCell align="center">subject name</StyledTableCell>
+                  <StyledTableCell align="center">day</StyledTableCell>
+                  <StyledTableCell align="center">time</StyledTableCell>
+                  <StyledTableCell align="center">section</StyledTableCell>
+                </TableRow>
+            </TableHead>
 
-export default AboutPage
+            <TableBody>
+              { data.directus.subject.map((subject) => (
+                <StyledTableRow data={subject} key={subject.sj_id}>
+                  <StyledTableCell align="center"> { subject.sj_id } </StyledTableCell>
+                  <StyledTableCell align="center"> { subject.sj_name } </StyledTableCell>
+                  <StyledTableCell align="center"> { subject.day } </StyledTableCell>
+                  <StyledTableCell align="center"> { subject.time } </StyledTableCell>
+                  <StyledTableCell align="center"> { subject.section } </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+      </div>
+      </div>
+    </Layout>
+  )
+}
+
