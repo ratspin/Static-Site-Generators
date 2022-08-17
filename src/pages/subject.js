@@ -2,7 +2,6 @@ import  React, { useState } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 import { Box,Container,Typography,Button,ButtonGroup,CssBaseline,Paper, Table, TableBody, TableContainer, TableCell,TableHead, TableRow } from '@mui/material';
-import NotListedLocationOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -108,7 +107,7 @@ const Subject = ({data}) => {
                     onClick={() => setShow(!show)}
                     variant="outlined" 
                     aria-label="outlined button group"> 
-                    <Button  startIcon={<NotListedLocationOutlinedIcon />} >Student</Button>
+                    <Button>Student</Button>
                   </ButtonGroup> 
 
 

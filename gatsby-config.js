@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/Static-Site-Generators",
   siteMetadata: {
     title: `HOME`,
     description: `A simple bootstrap 5 and Sass starter for Gatsby. This barebones starter ships with the main Gatsby configuration files you might need.`,
@@ -49,10 +50,6 @@ module.exports = {
 				},
 			},
 		},
-    {
-    siteUrl:'https://ratspin.github.io',
-    pathPrefix:'Static-Site-Generators',
-    },
     `gatsby-plugin-gatsby-cloud`,
   ],
 }

@@ -12,7 +12,8 @@ export  const Container0 = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 300px;
+    width: 350px;
+    hight: 100px;
     box-shadow: 0 3px 10px 0 #aaa;
 `;
 export const Name = styled.span`
